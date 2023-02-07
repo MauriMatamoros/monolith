@@ -1,0 +1,17 @@
+name: GitHub Actions Demo
+run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
+on:
+  push:
+    branches:
+      - master
+jobs:
+  monorepo_split:
+    strategy:
+      matrix:
+        directory: [Jerry, Lucky, Marques]
+      runs-on: ubuntu-latest
+      directory: ${{ matrix.directory }}
+      steps:
+        - run:
+            working-directory: monolith
+        - run: ls ${{ github.workspace }}
