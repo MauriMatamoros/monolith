@@ -17,4 +17,5 @@ jobs:
       - name: List files in the repository
         working-directory: ${{ matrix.directories }}
         run: ls
+      - run: echo "npm run start"
       - run: echo "🍏 This job's status is ${{ job.status }}."
