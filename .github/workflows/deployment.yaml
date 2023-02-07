@@ -6,12 +6,10 @@ on:
       - master
 jobs:
   monorepo_split:
+    name: Create_Matrix
+    runs-on: ubuntu-latest
     strategy:
       matrix:
         directory: [Jerry, Lucky, Marques]
-      runs-on: ubuntu-latest
-      directory: ${{ matrix.directory }}
       steps:
-        - run:
-            working-directory: monolith
         - run: ls ${{ github.workspace }}
