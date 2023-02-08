@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        directories: [{name: Jerry, age: 1}, {name: Lucky, age: 16}, {name: Marques, age: 1}]
+        directories: [{name: Jerry, age: 1, secret:  ${{ secrets.SOMETHING_SECRET }}}, {name: Lucky, age: 16, secret:  ${{ secrets.SOMETHING_SECRET }}}, {name: Marques, age: 1}, secret:  ${{ secrets.SOMETHING_SECRET }}]
     steps:
       - run: echo "matrix value ${{ matrix.directories }}"
       - run: echo ${{ matrix.directories.name }}
@@ -17,6 +17,6 @@ jobs:
       - name: Check out repository code
         uses: actions/checkout@v3
       - name: List files in the repository
-        working-directory: ${{ matrix.directories }}
+        working-directory: ${{ matrix.directories.name }}
         run: npm run start
       - run: echo "🍏 This job's status is ${{ job.status }}."
