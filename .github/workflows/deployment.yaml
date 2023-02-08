@@ -1,5 +1,5 @@
 name: Splitting Monorepo with Matrix
-run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
+run-name: GCP-Deployment
 on:
   push:
     branches:
@@ -9,9 +9,11 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        directories: [Jerry, Lucky, Marques]
+        directories: [{name: Jerry, age: 1}, {name: Lucky, age: 16}, {name: Marques, age: 1}]
     steps:
       - run: echo "matrix value ${{ matrix.directories }}"
+      - run: echo ${{ matrix.directories.name }}
+      - run: echo ${{ matrix.directories.age }}
       - name: Check out repository code
         uses: actions/checkout@v3
       - name: List files in the repository
