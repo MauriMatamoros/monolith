@@ -12,17 +12,18 @@ jobs:
         include:
           - directory: Jerry
             age: 1
-            secret: ${{ secrets.SOMETHING_SECRET }}
+            secret: SOMETHING_SECRET
           - directory: Lucky
             age: 16
-            secret: ${{ secrets.SOMETHING_SECRET }}
+            secret: SOMETHING_SECRET
           - directory: Marques
             age: 1
-            secret: ${{ secrets.SOMETHING_SECRET }}
+            secret: SOMETHING_SECRET
     steps:
       - run: echo "matrix value ${{ matrix.directories }}"
       - run: echo ${{ matrix.directories.name }}
       - run: echo ${{ matrix.directories.age }}
+      - run: echo ${{ secrets[matrix.secret] }}
       - name: Check out repository code
         uses: actions/checkout@v3
       - name: List files in the repository
